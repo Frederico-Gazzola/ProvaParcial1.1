@@ -1,41 +1,40 @@
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public final class Main {
     private static ArrayList<Reserva> reservas = new ArrayList<Reserva>();
     private static ArrayList<Reserva> listaEspera = new ArrayList<Reserva>();
 
     public static void main(String[] args) {
-        boolean exit = false;
-        Processo.ajudaInicial();
+        int escolha;
 
-        while(!exit){
-            try {
-                Processo.userPointer();
-                String input = Processo.getStrInput();
-        
-                if ("".equals(input)) {
-                } else if ("0".equals(input)) {
-                    Processo.help();
-                } else if ("1".equals(input)) {
+        do {
+			escolha = Integer.parseInt(JOptionPane.showInputDialog(Processo.screen()));
+			if (escolha < 1 || escolha > 6) {
+				JOptionPane.showMessageDialog(null, "Opção inválida");
+			} else {
+				switch (escolha) {
+				case 1:
                     reservar_mesa();
-                } else if ("2".equals(input)) {
+					break;
+				case 2:
                     possui_reserva(Processo.informar_codigo(Processo.escolherCliente()));
-                } else if ("3".equals(input)) {
+					break;
+				case 3:
                     Processo.imprimir_lista(reservas);
-                } else if ("4".equals(input)) {
+					break;
+				case 4:
                     Processo.imprimir_lista(listaEspera);
-                } else if ("5".equals(input)) {
+					break;
+				case 5:
                     cancelar_reserva();
-                } else if ("6".equals(input)) {
-                    exit = true;
-                }else {
-                    Processo.opInvalida();
-                    throw new UnsupportedOperationException();
-                }
-            } catch (UnsupportedOperationException e) {
-                e.printStackTrace();
-            }
-        }
+                    break;
+				}
+			}
+			
+		} while (escolha != 6);
+
     }
 
     private static void reservar_mesa(){

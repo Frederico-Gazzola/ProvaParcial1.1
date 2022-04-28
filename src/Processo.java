@@ -3,18 +3,19 @@ import java.util.Scanner;
 
 public class Processo {
     static Scanner scanner = new Scanner(System.in);
+
+    public static String screen() {
+		String aux = "Restaurante SABOR SOFISTICADO:\n";
+		aux += "1. Reservar mesa\n";
+		aux += "2. Pesquisar reserva\n";
+		aux += "3. Imprimir reservas\n";
+		aux += "4. Imprimir lista de esperas\n";
+		aux += "5. Cancelar reserva\n";
+		aux += "6. Finalizar\n";
+		return aux;
+		
+	}
     
-    public static void help() {
-        System.out.println(" Restaurante SABOR SOFISTICADO");
-        System.out.println("0. Menu de Opcoes");
-        System.out.println("1. Reservar Mesa");
-        System.out.println("2. Pesquisar Reserva");
-        System.out.println("3. Imprimir Reservas");
-        System.out.println("4. Imprimir Lista de Espera");
-        System.out.println("5. Cancelar Reserva");
-        System.out.println();
-        System.out.println("6. Finalizar");
-    }
 
     public static void userPointer() {
         System.out.print("User> ");
@@ -24,13 +25,6 @@ public class Processo {
         return scanner.nextLine().trim().toLowerCase();
     }
 
-    public static void ajudaInicial(){
-        System.out.println("(Digite 0 Para Ver Opcoes)");
-    }
-
-    public static void opInvalida(){
-        System.err.println("Opcao Invalida. Digite \"0\" para ajuda");
-    }
 
     public static void jaCadastrado(TpPessoa tp_c){
         switch (tp_c){
