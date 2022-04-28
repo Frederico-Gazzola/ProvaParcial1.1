@@ -5,7 +5,7 @@ public class Processo {
     static Scanner scanner = new Scanner(System.in);
 
     public static String screen() {
-		String aux = "Restaurante SABOR SOFISTICADO:\n";
+		String aux = "Restaurante   TEXTURA DIVINA:\n";
 		aux += "1. Reservar mesa\n";
 		aux += "2. Pesquisar reserva\n";
 		aux += "3. Imprimir reservas\n";
@@ -25,29 +25,28 @@ public class Processo {
         return scanner.nextLine().trim().toLowerCase();
     }
 
-
-    public static void jaCadastrado(TpPessoa tp_c){
-        switch (tp_c){
-            case FISICA:
-                System.out.println("Cpf ja Cadastrado!");
-                break;
-            case JURIDICA:
-                System.out.println("Cnpj ja Cadastrado!");
-                break;
-        }
-    }
-
     public static String inserirNome() {
         System.out.print("Nome: ");
         String nome = getStrInput();
         return nome;
     }
 
+    public static void jaCadastrado(TpPessoa tp_c){
+        switch (tp_c){
+            case FISICA:
+                System.out.println("CPF já Cadastrado!");
+                break;
+            case JURIDICA:
+                System.out.println("CNPJ já Cadastrado!");
+                break;
+        }
+    }
+
     public static void possuiReserva(Reserva reservaEncontrada) {
         if (reservaEncontrada == null){
-            System.out.println(">> Cliente Não Possui Reserva! <<");
+            System.out.println(">> Cliente Não Possui uma Reserva! <<");
         } else {
-            System.out.println(">> Cliente Possui Reserva <<");
+            System.out.println(">> Cliente Possui uma Reserva <<");
         }
     }
 
@@ -70,18 +69,6 @@ public class Processo {
         return codigo;
     }
 
-    public static TpPagamento escolherPagamento(){
-        String tp = "";
-        while (!tp.equals("a") && !tp.equals("p")) {
-            System.out.print("Tipo do Pagamento? [A|P] ");
-            tp = getStrInput(); 
-            if (!tp.equals("a") && !tp.equals("p")) {
-                System.err.println("A: A Vista | P: Parcelado");
-            }
-        }
-        return tp.equals("a") ? TpPagamento.AVISTA : TpPagamento.PARCELADO;
-    }
-
     public static TpPessoa escolherCliente(){
         String tp = "";
         while (!tp.equals("j") && !tp.equals("f")) {
@@ -92,6 +79,18 @@ public class Processo {
             }
         }
         return tp.equals("f") ? TpPessoa.FISICA : TpPessoa.JURIDICA;
+    }
+
+    public static TpPagamento escolherPagamento(){
+        String tp = "";
+        while (!tp.equals("a") && !tp.equals("p")) {
+            System.out.print("Tipo do Pagamento? [A|P] ");
+            tp = getStrInput(); 
+            if (!tp.equals("a") && !tp.equals("p")) {
+                System.err.println("A: A Vista | P: Parcelado");
+            }
+        }
+        return tp.equals("a") ? TpPagamento.AVISTA : TpPagamento.PARCELADO;
     }
 
     public static void reservaCancelada() {
